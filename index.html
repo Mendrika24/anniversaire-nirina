@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Joyeux Anniversaire Nirina ❤️</title>
+
+https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    background:linear-gradient(135deg,#ff758c,#ff7eb3,#a18cd1);
+    min-height:100vh;
+    color:#333;
+}
+
+.container{
+    width:100%;
+    max-width:500px;
+    margin:auto;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    width:100%;
+    border-radius:30px;
+    padding:25px;
+    box-shadow:0 12px 35px rgba(0,0,0,.20);
+    text-align:center;
+    animation:fadeIn .5s ease;
+}
+
+h1{
+    color:#e91e63;
+    font-size:2rem;
+}
+
+h2{
+    color:#e91e63;
+    margin-bottom:15px;
+}
+
+.subtitle{
+    margin-top:15px;
+    line-height:1.6;
+}
+
+button{
+    width:100%;
+    border:none;
+    border-radius:18px;
+    padding:16px;
+    margin:8px 0;
+    background:#e91e63;
+    color:white;
+    font-size:1rem;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:active{
+    transform:scale(.98);
+}
+
+.progress{
+    margin-bottom:20px;
+}
+
+.bar{
+    height:10px;
+    background:#eee;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.fill{
+    height:100%;
+    background:#e91e63;
+    width:0%;
+    transition:.5s;
+}
+
+.photo{
+    width:100%;
+    border-radius:20px;
+    margin-top:15px;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
+.hidden{
+    display:none;
+}
+
+.memory-text{
+    font-size:1.1rem;
+    line-height:1.7;
+}
+
+.gift{
+    font-size:120px;
+    animation:bounce 1.2s infinite;
+    cursor:pointer;
+}
+
+.gallery{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:15px;
+    margin-top:25px;
+}
+
+.polaroid{
+    background:white;
+    padding:10px;
+    border-radius:15px;
+    box-shadow:0 4px 12px rgba(0,0,0,.1);
+}
+
+.polaroid img{
+    width:100%;
+    border-radius:12px;
+}
+
+.polaroid p{
+    margin-top:8px;
+    font-weight:bold;
+}
+
+.error{
+    color:#d00000;
+    margin-top:12px;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+@keyframes bounce{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-15px);
+    }
+}
+
+.heart{
+    font-size:1.3rem;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<!-- ACCUEIL -->
+
+<div id="home">
+
+<h1>🎂 Joyeux anniversaire Nirina ❤️</h1>
+
+<p class="subtitle">
+Aujourd'hui je t'invite à revivre quelques-uns
+de nos plus beaux souvenirs.
+<br><br>
+Chaque bonne réponse débloquera un moment
+spécial de notre histoire. 💕
+</p>
+
+<br>
+
+<button onclick="startQuiz()">
+❤️ Commencer notre aventure ❤️
+</button>
+
+</div>
+
+<!-- QUIZ -->
+
+<div id="quiz" class="hidden">
+
+<div class="progress">
+<div id="progressText"></div>
+<br>
+<div class="bar">
+<div class="fill" id="fill"></div>
+</div>
+</div>
+
+<h2 id="question"></h2>
+
+<div id="answers"></div>
+
+<div class="error" id="error"></div>
+
+</div>
+
+<!-- SOUVENIR -->
+
+<div id="memory" class="hidden">
+
+<h2>✨ Souvenir débloqué ✨</h2>
+
+<p class="memory-text" id="memoryText"></p>
+
+images/default.jpg
+
+<br><br>
+
+<button onclick="nextQuestion()">
+Découvrir le souvenir suivant ❤️
+</button>
+
+</div>
+
+<!-- FIN -->
+
+<div id="final" class="hidden">
+
+<h1>🎉 Félicitations Nirina ❤️</h1>
+
+<p class="subtitle">
+Tu as débloqué tous nos souvenirs.
+</p>
+
+<br>
+
+<div id="giftArea">
+<p>Clique sur ton cadeau 🎁</p>
+<div class="gift" onclick="openGift()">🎁</div>
+</div>
+
+<div id="giftContent" class="hidden">
+
+<h2>💝 Surprise débloquée 💝</h2>
+
+<p class="subtitle">
+Félicitations !
+<br><br>
+Tu viens de recevoir un cadeau surprise 😍
+<br><br>
+🎁 Récupérable à partir du <b>4 septembre</b>
+</p>
+
+<br>
+
+<p style="line-height:1.8">
+
+Merci pour tous nos moments ensemble.
+
+<br><br>
+
+Merci pour les fous rires,
+les voyages,
+les repas,
+les films,
+et tous les souvenirs que nous avons créés.
+
+<br><br>
+
+Tu rends ma vie plus belle chaque jour.
+
+<br><br>
+
+J'espère que nous continuerons encore longtemps
+cette magnifique aventure.
+
+<br><br>
+
+❤️ Je t'aime ❤️
+
+</p>
+
+<hr style="margin:25px 0">
+
+<h2>📸 Nos souvenirs ensemble</h2>
+
+<p>
+Souvenirs créés ensemble :
+<b>∞</b>
+</p>
+
+<div class="gallery">
+
+<div class="polaroid">
+images/rencontre.jpg
+<p>❤️ Notre rencontre</p>
+</div>
+
+<div class="polaroid">
+-message.jpg">
+<p>💬 Premier message</p>
+</div>
+
+<div class="polaroid">
+images/otacos.jpg
+<p>🌮 Premier repas</p>
+</div>
+
+<div class="polaroid">
+images/cinema.jpg
+<p>🎬 Premier cinéma</p>
+</div>
+
+<div class="polaroid">
+ault.jpg">
+<p>🚗 Première destination</p>
+</div>
+
+<div class="polaroid">
+">
+<p>✈️ Nos voyages</p>
+</div>
+
+<div class="polaroid">
+images/amour.jpg
+<p>💕 Aujourd'hui</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const quiz = [
+
+{
+q:"Où nous sommes-nous rencontrés pour la première fois ?",
+o:["Pont le Nain","FPMA Poitiers","Vouneuil Biard","Chasseneuil"],
+c:[1],
+m:"❤️ FPMA Poitiers... le début de notre histoire.",
+i:"images/rencontre.jpg"
+},
+
+{
+q:"Qui a envoyé le premier message ?",
+o:["Moi","Toi","Un ami commun","On ne sait plus"],
+c:[1],
+m:"💬 Le premier message qui a lancé notre aventure.",
+i:"images/premier-message.jpg"
+},
+
+{
+q:"Quelle est notre activité préférée ?",
+o:["Dormir","Manger","Film","Shopping"],
+c:[0,1],
+m:"😴🍔 Dormir et manger : notre activité préférée !",
+i:"images/activite.jpg"
+},
+
+{
+q:"Où est-ce qu'on a mangé ensemble pour la première fois ?",
+o:["O Tacos","Pont Le Nain","Miandodo","Profuzion"],
+c:[0],
+m:"🌮 Notre premier repas ensemble chez O Tacos.",
+i:"images/otacos.jpg"
+},
+
+{
+q:"Quel est notre restaurant préféré ?",
+o:["Tacos","Japonais","Krousty","Buffet","Izy rehetra"],
+c:[4],
+m:"🍽️ Avec toi, tous les restaurants deviennent nos préférés.",
+i:"images/restaurants.jpg"
+},
+
+{
+q:"Quel était notre premier film au cinéma ?",
+o:["Femme de ménage","Comte de Monte Cristo","Vice Versa","Mario"],
+c:[1],
+m:"🎬 Notre première séance cinéma ensemble.",
+i:"images/cinema.jpg"
+},
+
+{
+q:"Quelle a été notre première destination ensemble ?",
+o:["Marseille","Tours","Châtellerault","Montpellier"],
+c:[2],
+m:"🚗 Châtellerault, notre première destination.",
+i:"images/chatellerault.jpg"
+},
+
+{
+q:"Quelle a été ta destination préférée ?",
+o:["Marseille","Toulouse","Châtellerault","Montpellier"],
+c:[0,1,2,3],
+m:"✈️ Tous ces voyages étaient parfaits parce que tu étais avec moi.",
+i:"images/voyages.jpg"
+},
+
+{
+q:"Veux-tu continuer cette aventure avec moi ? ❤️",
+o:["Oui","Oui","Oui","Toutes les réponses"],
+c:[0,1,2,3],
+m:"💖 La meilleure réponse sera toujours OUI.",
+i:"images/amour.jpg"
+}
+
+];
+
+let current = 0;
+
+function startQuiz(){
+document.getElementById("home").classList.add("hidden");
+document.getElementById("quiz").classList.remove("hidden");
+loadQuestion();
+}
+
+function loadQuestion(){
+
+let item = quiz[current];
+
+document.getElementById("question").innerHTML = item.q;
+
+document.getElementById("progressText").innerHTML =
+`❤️ Souvenir ${current+1} / ${quiz.length}`;
+
+document.getElementById("fill").style.width =
+((current)/quiz.length)*100 + "%";
+
+let answers='';
+
+item.o.forEach((option,index)=>{
+answers += `
+<button onclick="answer(${index})">
+${option}
+</button>
+`;
+});
+
+document.getElementById("answers").innerHTML = answers;
+document.getElementById("error").innerHTML = "";
+}
+
+function answer(index){
+
+let item = quiz[current];
+
+if(item.c.includes(index)){
+
+document.getElementById("quiz").classList.add("hidden");
+document.getElementById("memory").classList.remove("hidden");
+
+document.getElementById("memoryText").innerHTML = item.m;
+document.getElementById("memoryImage").src = item.i;
+
+}else{
+
+document.getElementById("error").innerHTML =
+"❌ Essaie encore mon amour ❤️";
+
+}
+
+}
+
+function nextQuestion(){
+
+current++;
+
+if(current >= quiz.length){
+
+document.getElementById("memory").classList.add("hidden");
+document.getElementById("final").classList.remove("hidden");
+
+confetti({
+particleCount:300,
+spread:180
+});
+
+return;
+}
+
+document.getElementById("memory").classList.add("hidden");
+document.getElementById("quiz").classList.remove("hidden");
+
+loadQuestion();
+
+}
+
+function openGift(){
+
+document.getElementById("giftArea").style.display="none";
+document.getElementById("giftContent").classList.remove("hidden");
+
+confetti({
+particleCount:500,
+spread:200
+});
+
+}
+
+</script>
+
+</body>
+</html>
