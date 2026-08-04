@@ -6,7 +6,7 @@
 
 <title>Joyeux Anniversaire Nirina ❤️</title>
 
-https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
 <style>
 
@@ -184,9 +184,17 @@ button:active{
 
 <h1>🎂 Joyeux anniversaire Nirina ❤️</h1>
 
+<audio id="birthdayAudio" autoplay style="display:none;">
+<source src="" type="audio/mpeg">
+</audio>
+
 <p class="subtitle">
 Aujourd'hui je t'invite à revivre quelques-uns
 de nos plus beaux souvenirs.
+<br>
+J'y ai mis également les chansons qu'on a fait ensemble
+<br>
+(Na dia tsy misy hidirany amle texte ary hihi) 😄
 <br><br>
 Chaque bonne réponse débloquera un moment
 spécial de notre histoire. 💕
@@ -226,15 +234,30 @@ spécial de notre histoire. 💕
 
 <h2>✨ Souvenir débloqué ✨</h2>
 
+<p id="songTitle" style="font-size:1rem; color:#e91e63; margin-bottom:10px;">🎵 Souvenir n°1 : titre</p>
+
 <p class="memory-text" id="memoryText"></p>
 
-images/default.jpg
+<img id="memoryImage" class="photo" src="default.jpeg" alt="Souvenir">
+
+<audio id="memoryAudio" style="width:100%; margin:15px 0;" controls>
+<source src="" type="audio/mpeg">
+Votre navigateur ne supporte pas le lecteur audio.
+</audio>
 
 <br><br>
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+
+<button onclick="previousQuestion()" id="prevBtn">
+⬅️ Revoir le souvenir
+</button>
 
 <button onclick="nextQuestion()">
 Découvrir le souvenir suivant ❤️
 </button>
+
+</div>
 
 </div>
 
@@ -308,37 +331,37 @@ Souvenirs créés ensemble :
 <div class="gallery">
 
 <div class="polaroid">
-rencontre.jpg
+<img src="rencontre.jpeg" alt="Notre rencontre">
 <p>❤️ Notre rencontre</p>
 </div>
 
 <div class="polaroid">
--message.jpg">
+<img src="premier-message.jpeg" alt="Premier message">
 <p>💬 Premier message</p>
 </div>
 
 <div class="polaroid">
-images/otacos.jpg
+<img src="otacos.jpeg" alt="Premier repas">
 <p>🌮 Premier repas</p>
 </div>
 
 <div class="polaroid">
-images/cinema.jpg
+<img src="cinema.jpeg" alt="Premier cinéma">
 <p>🎬 Premier cinéma</p>
 </div>
 
 <div class="polaroid">
-ault.jpg">
+<img src="chatellerault.jpeg" alt="Première destination">
 <p>🚗 Première destination</p>
 </div>
 
 <div class="polaroid">
-">
+<img src="voyages.jpeg" alt="Nos voyages">
 <p>✈️ Nos voyages</p>
 </div>
 
 <div class="polaroid">
-images/amour.jpg
+<img src="amour.jpeg" alt="Aujourd'hui">
 <p>💕 Aujourd'hui</p>
 </div>
 
@@ -361,7 +384,9 @@ q:"Où nous sommes-nous rencontrés pour la première fois ?",
 o:["Pont le Nain","FPMA Poitiers","Vouneuil Biard","Chasseneuil"],
 c:[1],
 m:"❤️ FPMA Poitiers... le début de notre histoire.",
-i:"images/rencontre.jpg"
+i:"rencontre.jpeg",
+a:"Chanson 1 - Avia ry ondriko.mp3",
+t:"Avia ry ondriko"
 },
 
 {
@@ -369,7 +394,9 @@ q:"Qui a envoyé le premier message ?",
 o:["Moi","Toi","Un ami commun","On ne sait plus"],
 c:[1],
 m:"💬 Le premier message qui a lancé notre aventure.",
-i:"images/premier-message.jpg"
+i:"premier-message.jpeg",
+a:"Chanson 2 - Mimoza.mp3",
+t:"Mimoza"
 },
 
 {
@@ -377,7 +404,9 @@ q:"Quelle est notre activité préférée ?",
 o:["Dormir","Manger","Film","Shopping"],
 c:[0,1],
 m:"😴🍔 Dormir et manger : notre activité préférée !",
-i:"images/activite.jpg"
+i:"activite.jpeg",
+a:"Chanson 3 - Hianao Jehovah o.mp3",
+t:"Hianao Jehovah o"
 },
 
 {
@@ -385,7 +414,9 @@ q:"Où est-ce qu'on a mangé ensemble pour la première fois ?",
 o:["O Tacos","Pont Le Nain","Miandodo","Profuzion"],
 c:[0],
 m:"🌮 Notre premier repas ensemble chez O Tacos.",
-i:"images/otacos.jpg"
+i:"otacos.jpeg",
+a:"Chanson 4 - Nindramiko.mp3",
+t:"Nindramiko"
 },
 
 {
@@ -393,7 +424,9 @@ q:"Quel est notre restaurant préféré ?",
 o:["Tacos","Japonais","Krousty","Buffet","Izy rehetra"],
 c:[4],
 m:"🍽️ Avec toi, tous les restaurants deviennent nos préférés.",
-i:"images/restaurants.jpg"
+i:"restaurants.jpeg",
+a:"Chanson 5 - Misaotra Anao zahay.mpeg",
+t:"Misaotra Anao zahay"
 },
 
 {
@@ -401,7 +434,9 @@ q:"Quel était notre premier film au cinéma ?",
 o:["Femme de ménage","Comte de Monte Cristo","Vice Versa","Mario"],
 c:[1],
 m:"🎬 Notre première séance cinéma ensemble.",
-i:"images/cinema.jpg"
+i:"cinema.jpeg",
+a:"Chanson 6 - Tsy misy miadana ka afa-po.mp3",
+t:"Tsy misy miadana ka afa-po"
 },
 
 {
@@ -409,7 +444,9 @@ q:"Quelle a été notre première destination ensemble ?",
 o:["Marseille","Tours","Châtellerault","Montpellier"],
 c:[2],
 m:"🚗 Châtellerault, notre première destination.",
-i:"images/chatellerault.jpg"
+i:"chatellerault.jpeg",
+a:"Chanson 7 - Momba ahy.mp3",
+t:"Momba ahy"
 },
 
 {
@@ -417,7 +454,9 @@ q:"Quelle a été ta destination préférée ?",
 o:["Marseille","Toulouse","Châtellerault","Montpellier"],
 c:[0,1,2,3],
 m:"✈️ Tous ces voyages étaient parfaits parce que tu étais avec moi.",
-i:"images/voyages.jpg"
+i:"voyages.jpeg",
+a:"Chanson 8 - Nitempo hoanao.mp3",
+t:"Nitempo hoanao"
 },
 
 {
@@ -425,7 +464,9 @@ q:"Veux-tu continuer cette aventure avec moi ? ❤️",
 o:["Oui","Oui","Oui","Toutes les réponses"],
 c:[0,1,2,3],
 m:"💖 La meilleure réponse sera toujours OUI.",
-i:"images/amour.jpg"
+i:"amour.jpeg",
+a:"Chanson 9 - Hisaoranay.mpeg",
+t:"Hisaoranay"
 }
 
 ];
@@ -433,6 +474,7 @@ i:"images/amour.jpg"
 let current = 0;
 
 function startQuiz(){
+document.getElementById("birthdayAudio").pause();
 document.getElementById("home").classList.add("hidden");
 document.getElementById("quiz").classList.remove("hidden");
 loadQuestion();
@@ -476,10 +518,16 @@ document.getElementById("memory").classList.remove("hidden");
 document.getElementById("memoryText").innerHTML = item.m;
 document.getElementById("memoryImage").src = item.i;
 
+document.getElementById("songTitle").innerHTML = `🎵 Souvenir n°${current+1} : ${item.t}`;
+
+let audioElement = document.getElementById("memoryAudio");
+audioElement.src = item.a;
+audioElement.play();
+
 }else{
 
 document.getElementById("error").innerHTML =
-"❌ Essaie encore mon amour ❤️";
+"❌ Essaie encore malala ❤️";
 
 }
 
@@ -509,6 +557,28 @@ loadQuestion();
 
 }
 
+function previousQuestion(){
+
+if(current > 0){
+current--;
+
+let item = quiz[current];
+
+document.getElementById("quiz").classList.add("hidden");
+document.getElementById("memory").classList.remove("hidden");
+
+document.getElementById("memoryText").innerHTML = item.m;
+document.getElementById("memoryImage").src = item.i;
+
+document.getElementById("songTitle").innerHTML = `🎵 Souvenir n°${current+1} : ${item.t}`;
+
+let audioElement = document.getElementById("memoryAudio");
+audioElement.src = item.a;
+audioElement.play();
+}
+
+}
+
 function openGift(){
 
 document.getElementById("giftArea").style.display="none";
@@ -520,6 +590,13 @@ spread:200
 });
 
 }
+
+window.addEventListener('load', function() {
+  let birthdayAudio = document.getElementById("birthdayAudio");
+  birthdayAudio.src = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
+  birthdayAudio.currentTime = 0;
+  birthdayAudio.play().catch(err => console.log("Auto-play bloquée"));
+});
 
 </script>
 
