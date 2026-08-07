@@ -589,7 +589,8 @@ spread:200
 
 window.addEventListener('load', function() {
   let birthdayAudio = document.getElementById("birthdayAudio");
-  birthdayAudio.src = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
+  // Play the local "Chanson 0 - joyeux anniversaire" on the landing page
+  birthdayAudio.src = "Chanson 0 - joyeux anniversaire.mpeg";
   birthdayAudio.currentTime = 0;
   birthdayAudio.play().catch(err => console.log("Auto-play bloquée"));
 });
