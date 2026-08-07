@@ -202,8 +202,6 @@ spécial de notre histoire. 💕
 
 <br>
 
-<button id="playBirthdayBtn" onclick="toggleBirthday()" style="display:none; margin-bottom:10px; background:#ffb3c6; color:#fff;">▶️ Play</button>
-
 <button onclick="startQuiz()">
 ❤️ Commencer notre aventure ❤️
 </button>
@@ -589,36 +587,11 @@ spread:200
 
 window.addEventListener('load', function() {
   let birthdayAudio = document.getElementById("birthdayAudio");
-  let playBtn = document.getElementById("playBirthdayBtn");
-  // Play the local "Chanson 0 - joyeux anniversaire" on the landing page
+  // Attempt to autoplay the local birthday song on page open
   birthdayAudio.src = "Chanson 0 - joyeux anniversaire.mpeg";
   birthdayAudio.currentTime = 0;
-  birthdayAudio.play().then(()=>{
-    if(playBtn){ playBtn.style.display='inline-block'; playBtn.innerText='⏸️ Pause'; playBtn.dataset.playing='true'; }
-  }).catch(err => {
-    console.log("Auto-play bloquée");
-    if(playBtn){ playBtn.style.display='inline-block'; playBtn.innerText='▶️ Play'; playBtn.dataset.playing='false'; }
-  });
-
+  birthdayAudio.play().catch(err => console.log("Auto-play bloquée"));
 });
-
-function toggleBirthday(){
-  let birthdayAudio = document.getElementById("birthdayAudio");
-  let playBtn = document.getElementById("playBirthdayBtn");
-  if(!birthdayAudio || !playBtn) return;
-  if(playBtn.dataset.playing === 'true'){
-    birthdayAudio.pause();
-    playBtn.innerText = '▶️ Play';
-    playBtn.dataset.playing='false';
-  } else {
-    birthdayAudio.play().then(()=>{
-      playBtn.innerText = '⏸️ Pause';
-      playBtn.dataset.playing='true';
-    }).catch(err=>{
-      console.log('Play blocked');
-    });
-  }
-}
 
 </script>
 
