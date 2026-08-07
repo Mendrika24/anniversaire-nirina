@@ -202,6 +202,8 @@ spécial de notre histoire. 💕
 
 <br>
 
+<p id="audioInstruction" style="color:#666; font-size:0.95rem; margin-bottom:10px;">Si la musique ne démarre pas automatiquement, appuyez n'importe où sur l'écran pour lancer la chanson.</p>
+
 <button onclick="startQuiz()">
 ❤️ Commencer notre aventure ❤️
 </button>
@@ -587,10 +589,26 @@ spread:200
 
 window.addEventListener('load', function() {
   let birthdayAudio = document.getElementById("birthdayAudio");
+  let audioInstruction = document.getElementById("audioInstruction");
   // Attempt to autoplay the local birthday song on page open
   birthdayAudio.src = "Chanson 0 - joyeux anniversaire.mpeg";
   birthdayAudio.currentTime = 0;
-  birthdayAudio.play().catch(err => console.log("Auto-play bloquée"));
+  birthdayAudio.play().then(()=>{
+    if(audioInstruction) audioInstruction.style.display='none';
+  }).catch(err => {
+    console.log("Auto-play bloquée");
+    if(audioInstruction) audioInstruction.style.display='block';
+  });
+
+  function userStart(){
+    birthdayAudio.play().then(()=>{
+      if(audioInstruction) audioInstruction.style.display='none';
+      document.removeEventListener('click', userStart);
+      document.removeEventListener('touchstart', userStart);
+    }).catch(()=>{});
+  }
+  document.addEventListener('click', userStart);
+  document.addEventListener('touchstart', userStart);
 });
 
 </script>
