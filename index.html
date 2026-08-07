@@ -204,6 +204,8 @@ spécial de notre histoire. 💕
 
 <p id="audioInstruction" style="color:#666; font-size:0.95rem; margin-bottom:10px;">Si la musique ne démarre pas automatiquement, appuyez n'importe où sur l'écran pour lancer la chanson.</p>
 
+<button id="playBirthdayBtn" onclick="toggleBirthday()" style="background:#ffb3c6; color:#fff; margin-bottom:10px;">▶️ Écouter la chanson</button>
+
 <button onclick="startQuiz()">
 ❤️ Commencer notre aventure ❤️
 </button>
@@ -590,19 +592,23 @@ spread:200
 window.addEventListener('load', function() {
   let birthdayAudio = document.getElementById("birthdayAudio");
   let audioInstruction = document.getElementById("audioInstruction");
+  let playBtn = document.getElementById("playBirthdayBtn");
   // Attempt to autoplay the local birthday song on page open
   birthdayAudio.src = "Chanson 0 - joyeux anniversaire.mpeg";
   birthdayAudio.currentTime = 0;
   birthdayAudio.play().then(()=>{
     if(audioInstruction) audioInstruction.style.display='none';
+    if(playBtn){ playBtn.innerText='⏸️ Pause la chanson'; playBtn.dataset.playing='true'; }
   }).catch(err => {
     console.log("Auto-play bloquée");
     if(audioInstruction) audioInstruction.style.display='block';
+    if(playBtn){ playBtn.innerText='▶️ Écouter la chanson'; playBtn.dataset.playing='false'; }
   });
 
   function userStart(){
     birthdayAudio.play().then(()=>{
       if(audioInstruction) audioInstruction.style.display='none';
+      if(playBtn){ playBtn.innerText='⏸️ Pause la chanson'; playBtn.dataset.playing='true'; }
       document.removeEventListener('click', userStart);
       document.removeEventListener('touchstart', userStart);
     }).catch(()=>{});
@@ -610,6 +616,22 @@ window.addEventListener('load', function() {
   document.addEventListener('click', userStart);
   document.addEventListener('touchstart', userStart);
 });
+
+function toggleBirthday(){
+  let birthdayAudio = document.getElementById("birthdayAudio");
+  let playBtn = document.getElementById("playBirthdayBtn");
+  if(!birthdayAudio || !playBtn) return;
+  if(playBtn.dataset.playing === 'true'){
+    birthdayAudio.pause();
+    playBtn.innerText = '▶️ Écouter la chanson';
+    playBtn.dataset.playing='false';
+  } else {
+    birthdayAudio.play().then(()=>{
+      playBtn.innerText = '⏸️ Pause la chanson';
+      playBtn.dataset.playing='true';
+    }).catch(err=>{ console.log('Play blocked'); });
+  }
+}
 
 </script>
 
